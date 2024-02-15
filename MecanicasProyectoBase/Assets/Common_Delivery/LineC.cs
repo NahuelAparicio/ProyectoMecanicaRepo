@@ -16,6 +16,8 @@ public struct LineC
     {
         this.origin = origin;
         this.direction = direction;
+        //S'HA DE NORMALITZAR
+       //direction.Normalize();
     }
     #endregion
 
@@ -23,6 +25,14 @@ public struct LineC
     #endregion
 
     #region METHODS
+    public void PointToPoint(Vector3C extPoint, LineC myLine)
+    {
+
+    }
+    public void PointToLine(LineC myExternLine, LineC myLine)
+    {
+
+    }
     #endregion
 
     #region FUNCTIONS

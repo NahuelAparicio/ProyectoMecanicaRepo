@@ -49,6 +49,14 @@ public struct CubeC
         }
         return false;
     }
+    public bool IsInside(object obj)
+    {
+        if ()
+        {
+
+        }
+
+    }
     #endregion
 
     #region FUNCTIONS
