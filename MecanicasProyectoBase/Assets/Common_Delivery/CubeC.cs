@@ -1,5 +1,7 @@
 using System;
 
+
+
 [System.Serializable]
 public struct CubeC
 {
@@ -13,8 +15,53 @@ public struct CubeC
     #region PROPIERTIES
 
     #endregion
-
+    // Position by default 0 Radius by default 1, rotation by default 0, scale by default 1
     #region CONSTRUCTORS
+    //public CubeC()
+    //{
+    //    position = Vector3C.zero;
+    //    scale = Vector3C.one;
+    //    rotation = Vector3C.zero;
+    //    radius = 1;
+    //}
+    public CubeC(Vector3C pos)
+    {
+        position = pos;
+        scale = Vector3C.one;
+        rotation = Vector3C.zero;
+        radius = 1;
+    }
+    public CubeC(Vector3C pos, Vector3C _scale)
+    {
+        position = pos;
+        scale = _scale;
+        rotation = Vector3C.zero;
+        radius = 1;
+    }
+    public CubeC(Vector3C pos, Vector3C _scale, Vector3C rot)
+    {
+        position = pos;
+        scale = _scale;
+        rotation = rot;
+        radius = 1;
+    }
+
+    public CubeC(Vector3C pos, Vector3C _scale, Vector3C rot, float _radius)
+    {
+        position = pos;
+        scale = _scale;
+        rotation = rot;
+        radius = _radius;
+    }
+
+    public CubeC(Vector3C pos, Vector3C _scale, float _radius)
+    {
+        position = pos;
+        scale = _scale;
+        rotation = Vector3C.zero;
+        radius = _radius;
+    }
+
     #endregion
 
     #region OPERATORS
@@ -49,14 +96,14 @@ public struct CubeC
         }
         return false;
     }
-    public bool IsInside(object obj)
-    {
-        if ()
-        {
+    //public bool IsInside(object obj)
+    //{
+    //    if ()
+    //    {
 
-        }
+    //    }
 
-    }
+    //}
     #endregion
 
     #region FUNCTIONS

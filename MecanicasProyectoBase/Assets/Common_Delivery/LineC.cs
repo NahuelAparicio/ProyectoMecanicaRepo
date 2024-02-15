@@ -16,15 +16,43 @@ public struct LineC
     {
         this.origin = origin;
         this.direction = direction;
-        //S'HA DE NORMALITZAR
-       //direction.Normalize();
+        direction.Normalize();
     }
     #endregion
 
     #region OPERATORS
+
+    public static bool operator ==(LineC lhs, LineC rhs)
+    {
+        if (lhs.origin == rhs.origin && lhs.direction == rhs.direction)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public static bool operator !=(LineC lhs, LineC rhs)
+    {
+        if (lhs.origin != rhs.origin && lhs.direction != rhs.direction)
+        {
+            return true;
+        }
+        return false;
+    }
+
     #endregion
 
     #region METHODS
+
+    public override bool Equals(object obj)
+    {
+        if(obj is LineC)
+        {
+            LineC other = (LineC)obj;
+            return other == this;
+        }
+        return false;  
+    }
     public void PointToPoint(Vector3C extPoint, LineC myLine)
     {
 

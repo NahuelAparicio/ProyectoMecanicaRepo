@@ -18,10 +18,7 @@ public class AA1_ParticleRenderer : MonoBehaviour
         system.settingsCascade.PointB = cascadeB.ToCustomPosition();
         system.settingsCannon.Start = cannon.ToCustomPosition();
         system.settingsCannon.Direction = cannon.ToCustomForward();
-
         AA1_ParticleSystem.Particle[] particles = system.Update(Time.deltaTime);
-
-
         RenderParams rp = new RenderParams(particleMaterial);
         rp.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.TwoSided;
         rp.receiveShadows = true;

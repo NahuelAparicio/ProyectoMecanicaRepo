@@ -15,6 +15,17 @@ public struct SphereC
     #endregion
 
     #region OPERATORS
+
+    public static bool operator ==(SphereC lhs, SphereC rhs)
+    {
+        return true;
+    }
+    public static bool operator !=(SphereC lhs, SphereC rhs)
+    {
+        return false;
+
+    }
+
     #endregion
 
     #region METHODS
@@ -27,12 +38,9 @@ public struct SphereC
         }
         return false;
     }
-    public bool IsInside(object obj)
+    public bool IsInside(SphereC sphere)
     {
-        if ()
-        {
-            
-        }
+        return true;
        
     }
     #endregion

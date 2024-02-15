@@ -37,6 +37,12 @@ public struct Vector3C
     {
         this.x = x; this.y = y; this.z = z;
     }
+
+    public Vector3C(Vector3C pointA, Vector3C pointB)
+    {
+        this = pointB - pointA;
+    }
+
     #endregion
 
 
@@ -148,7 +154,7 @@ public struct Vector3C
             return 0f;
         }
         float num2 = Utils.Clamp(Dot(from, to) / num, -1f, 1f);
-        return (float)Math.Acos(num2) * 57.29f;
+        return (float)Math.Acos(num2) * Utils.Rad2Deg;
     }
 
     #endregion
