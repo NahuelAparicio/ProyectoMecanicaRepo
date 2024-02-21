@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 
 [System.Serializable]
 public struct LineC
@@ -53,17 +53,51 @@ public struct LineC
         }
         return false;  
     }
-    public void PointToPoint(Vector3C extPoint, LineC myLine)
+    public Vector3C PointToPoint(Vector3C extPoint, LineC myLine)
     {
+        Vector3C vectorAB = myLine.direction;
+        Vector3C vectorAP = extPoint - myLine.origin;
+
+        float t = Vector3C.Dot(vectorAP, vectorAB) / Vector3C.Dot(vectorAB, vectorAB);
+
+        // Clampeamos t para asegurarnos de que el punto est� en el segmento AB
+        t = Utils.Clamp01(t);
+
+        Vector3C closestPoint = myLine.origin + t * vectorAB;
+        return closestPoint;
+
 
     }
-    public void PointToLine(LineC myExternLine, LineC myLine)
+    public Vector3C PointToLine(LineC myExternLine, LineC myLine)
     {
+        Vector3C vectorBetweenOrigins = myExternLine.origin - myLine.origin;
+
+        float t = Vector3C.Dot(vectorBetweenOrigins, myLine.direction) / Vector3C.Dot(myLine.direction, myLine.direction);
+
+        // Clampeamos t para asegurarnos de que el punto est� en la l�nea myLine
+        t = Utils.Clamp01(t);
+
+        Vector3C closestPoint = myLine.origin + t * myLine.direction;
+        return closestPoint;
 
     }
     #endregion
 
     #region FUNCTIONS
+    public LineC LineFromPointAPointB(Vector3C pointA, Vector3C pointB)
+    {
+        // El origen de la l�nea puede ser cualquiera de los dos puntos
+        Vector3C lineOrigin = pointA;
+
+        // La direcci�n de la l�nea es un vector que apunta de pointA a pointB
+        Vector3C lineDirection = pointB - pointA;
+        lineDirection.Normalize();
+
+        // Creamos y devolvemos 
+        LineC newLine = new LineC(lineOrigin, lineDirection);
+        return newLine;
+
+    }
     #endregion
 
 }
