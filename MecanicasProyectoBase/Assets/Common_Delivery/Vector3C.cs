@@ -86,6 +86,28 @@ public struct Vector3C
         }
         return false;
     }
+
+    public static Vector3C operator *(MyQuat rotation, Vector3C point)
+    {
+        float num = rotation.x * 2f;
+        float num2 = rotation.y * 2f;
+        float num3 = rotation.z * 2f;
+        float num4 = rotation.x * num;
+        float num5 = rotation.y * num2;
+        float num6 = rotation.z * num3;
+        float num7 = rotation.x * num2;
+        float num8 = rotation.x * num3;
+        float num9 = rotation.y * num3;
+        float num10 = rotation.w * num;
+        float num11 = rotation.w * num2;
+        float num12 = rotation.w * num3;
+        Vector3C result = default(Vector3C);
+        result.x = (1f - (num5 + num6)) * point.x + (num7 - num12) * point.y + (num8 + num11) * point.z;
+        result.y = (num7 + num12) * point.x + (1f - (num4 + num6)) * point.y + (num9 - num10) * point.z;
+        result.z = (num8 - num11) * point.x + (num9 + num10) * point.y + (1f - (num4 + num5)) * point.z;
+        return result;
+    }
+
     #endregion
 
     #region METHODS
@@ -113,7 +135,7 @@ public struct Vector3C
         }
     }
 
-    public Vector3C Normalize(Vector3C vec)
+    public static Vector3C Normalize(Vector3C vec)
     {
         float magnitude = Magnitude(vec);
         if (magnitude > 0.0f)
@@ -122,7 +144,7 @@ public struct Vector3C
         }
         return zero;
     }
-    public float Magnitude(Vector3C vec) => (float)Math.Sqrt(vec.x * vec.x + vec.y * vec.y + vec.z * vec.z);
+    public static float Magnitude(Vector3C vec) => (float)Math.Sqrt(vec.x * vec.x + vec.y * vec.y + vec.z * vec.z);
     public float SqrMagnitude(Vector3C vec) => (float)(vec.x * vec.x + vec.y * vec.y + vec.z * vec.z);
     #endregion
 
@@ -155,6 +177,19 @@ public struct Vector3C
         }
         float num2 = Utils.Clamp(Dot(from, to) / num, -1f, 1f);
         return (float)Math.Acos(num2) * Utils.Rad2Deg;
+    }
+
+    public static float AngleTest(Vector3C a, Vector3C b)
+    {
+        return (float)Math.Atan2(b.y - a.y, b.x - a.x);
+    }
+
+    public static Vector3C Project(Vector3C a, Vector3C b)
+    {
+        float n = a.x * b.x + a.y * b.y + a.z * b.z;
+        float t = (float)Math.Sqrt(b.x * b.x + b.y * b.y + b.z * b.z);
+
+        return new Vector3C(n * b.x / (t * t), n * b.y / (t * t), n * b.z / (t * t));
     }
 
     #endregion

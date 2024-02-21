@@ -9,6 +9,13 @@ public struct Utils
 
     public const float Rad2Deg = 57.29578f;
 
+    internal static readonly float Epsilon = 0.0000000001f;
+
+    public static double Radians(double ang)
+    {
+        return (ang * (Math.PI / 180));
+    }
+
     //Min max between 2 values
 
     public static int Min(int a, int b)

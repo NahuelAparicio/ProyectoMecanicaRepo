@@ -12,17 +12,44 @@ public struct SphereC
     #endregion
 
     #region CONSTRUCTORS
+
+    public SphereC(Vector3C _pos, float _radius)
+    {
+        position = _pos;
+        radius = _radius;
+    }
+
+    public SphereC(float _radius = 0.5f)
+    {
+        position = new Vector3C(0,0,0);
+        radius = _radius;
+    }
+
     #endregion
 
     #region OPERATORS
 
     public static bool operator ==(SphereC lhs, SphereC rhs)
     {
-        return true;
+        if (lhs.position == rhs.position && lhs.radius == rhs.radius)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
     public static bool operator !=(SphereC lhs, SphereC rhs)
     {
-        return false;
+        if (lhs.position != rhs.position && lhs.radius != rhs.radius)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
 
     }
 
