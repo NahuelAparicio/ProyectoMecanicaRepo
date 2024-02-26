@@ -161,9 +161,9 @@ MonoBehaviour:
     settings:
       gravity:
         x: 0
-        y: 0
+        y: 9.81
         z: 0
-      bounce: 0
+      bounce: 20
     settingsCascade:
       PointA:
         x: 0
@@ -219,6 +219,43 @@ MonoBehaviour:
           y: 0.75
           z: 0.2
         radius: 0.1
+    particles:
+    - position:
+        x: 0
+        y: 0
+        z: 0
+      velocity:
+        x: 0
+        y: 0
+        z: 0
+      size: 0.1
+    - position:
+        x: 1
+        y: 0
+        z: 0
+      velocity:
+        x: 0
+        y: 0
+        z: 0
+      size: 0.1
+    - position:
+        x: 2
+        y: 0
+        z: 0
+      velocity:
+        x: 0
+        y: 0
+        z: 0
+      size: 0.1
+    - position:
+        x: 3
+        y: 0
+        z: 0
+      velocity:
+        x: 0
+        y: 0
+        z: 0
+      size: 0.1
 --- !u!4 &83351503
 Transform:
   m_ObjectHideFlags: 0

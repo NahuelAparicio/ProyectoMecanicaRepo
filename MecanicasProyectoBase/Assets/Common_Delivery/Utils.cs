@@ -1,6 +1,7 @@
 
 using UnityEditor;
 using System;
+using UnityEngine;
 
 [System.Serializable]
 public struct Utils
@@ -10,6 +11,8 @@ public struct Utils
     public const float Rad2Deg = 57.29578f;
 
     internal static readonly float Epsilon = 0.0000000001f;
+
+    public const float gravity = 9.81f;
 
     public static double Radians(double ang)
     {

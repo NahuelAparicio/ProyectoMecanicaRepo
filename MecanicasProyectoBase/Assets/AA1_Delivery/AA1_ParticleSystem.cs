@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 [System.Serializable]
 public class AA1_ParticleSystem
 {
@@ -38,20 +40,44 @@ public class AA1_ParticleSystem
     public SettingsCollision settingsCollision;
 
 
-
+    [System.Serializable]
     public struct Particle
     {
         public Vector3C position;
+        public Vector3C velocity;
         public float size;
+
+        public Particle(Vector3C pos, Vector3C _velocity, float _size)
+        {
+            position = pos;
+            velocity = _velocity;
+            size = _size;
+        }
+
+        public void Update(float dt, Vector3C gravity)
+        {
+            //Apply gravity
+            velocity.y -= gravity.y * dt;
+            //Update position
+            position.x += velocity.x * dt;
+            position.y += velocity.y * dt;
+        }
     }
+
+    public void ApplyForceToPoint(int particleIndex, Vector3C force)
+    {
+        particles[particleIndex].velocity += force;
+    }
+
+    public Particle[] particles;
 
     public Particle[] Update(float dt)
     {
-        Particle[] particles = new Particle[10];
         for (int i = 0; i < particles.Length; ++i)
         {
-            particles[i].position = new Vector3C(-4.5f + i, 0.0f, 0);
-            particles[i].size = 0.1f;
+            //particles[i].position = new Vector3C(-4.5f + i, 0.0f, 0);
+            //particles[i].size = 0.1f;
+            particles[i].Update(dt, settings.gravity);
         }
         return particles;
     }
