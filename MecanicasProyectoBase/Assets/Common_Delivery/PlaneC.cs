@@ -7,15 +7,41 @@ public struct PlaneC
     #region FIELDS
     public Vector3C position;
     public Vector3C normal;
+    //public int size;
+    //public float _distance;
     #endregion
 
     #region PROPIERTIES
+
+  //  public Vector3C normal { get { return normal; } set { normal = value; } }
+    //public float distance { get { return _distance; } set { _distance = value; } }
+
+    //public PlaneC flipped { get { return new PlaneC(-_normal, 0f - _distance); } }
+
     public static Vector3C right { get { return new Vector3C(1, 0, 0); } }
     public static Vector3C up { get { return new Vector3C(0, 1, 0); } }
     public static Vector3C forward { get { return new Vector3C(0, 0, 1); } }
     #endregion
 
     #region CONSTRUCTORS
+    //public PlaneC(Vector3C nNormal, Vector3C nPoint)
+    //{
+    //    _normal = nNormal;
+    //    _distance = 0f - Vector3C.Dot(_normal, nPoint);
+    //}
+
+    //public Plane(Vector3C nNormal, float d)
+    //{
+    //    _normal = Vector3C.Normalize(nNormal);
+    //    _distance = d;
+    //}
+
+    //public Plane(Vector3 a, Vector3 b, Vector3 c)
+    //{
+    //    m_Normal = Vector3.Normalize(Vector3.Cross(b - a, c - a));
+    //    m_Distance = 0f - Vector3.Dot(m_Normal, a);
+    //}
+
     public PlaneC(Vector3C position, Vector3C normal)
     {
         this.position = position;
@@ -63,7 +89,6 @@ public struct PlaneC
 
         // Punto más cercano en el plano
         Vector3C nearestPoint = extPoint - distance * myPlane.normal;
-
         return nearestPoint;
     }
     public Vector3C IntersectionPoint(PlaneC myPlane, LineC myLine)

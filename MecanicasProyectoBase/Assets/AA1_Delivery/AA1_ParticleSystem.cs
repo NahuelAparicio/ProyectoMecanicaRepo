@@ -1,5 +1,6 @@
 using System.Collections.Generic;
-
+using System.Numerics;
+using UnityEngine;
 [System.Serializable]
 public class AA1_ParticleSystem
 {
@@ -78,23 +79,46 @@ public class AA1_ParticleSystem
             //particles[i].position = new Vector3C(-4.5f + i, 0.0f, 0);
             //particles[i].size = 0.1f;
             particles[i].Update(dt, settings.gravity);
+
+            if (IsCollidingWithPlanes(particles[i]))
+            {
+                Debug.Log("is colliding");
+            }
+            
         }
         return particles;
     }
 
-    public void Debug()
+    public bool IsCollidingWithPlanes(Particle particle)
     {
-        foreach (var item in settingsCollision.planes)
+        foreach (PlaneC plane in settingsCollision.planes)
         {
-            item.Print(Vector3C.red);
+            Vector3C nearestPoint = plane.NearestPoint(plane, particle.position);
+            Vector3C distanceVector = particle.position - nearestPoint;
+            //float distance = Vector3C.Dot(plane.normal, particle.position - plane.position);
+            float distance = Vector3C.Dot(distanceVector, plane.normal);
+
+            if (distance <= particle.size)
+            {
+                return true;
+            }
         }
-        foreach (var item in settingsCollision.capsules)
-        {
-            item.Print(Vector3C.green);
-        }
-        foreach (var item in settingsCollision.spheres)
-        {
-            item.Print(Vector3C.blue);
-        }
+        return false;
     }
+
+    //public void Debug()
+    //{
+    //    foreach (var item in settingsCollision.planes)
+    //    {
+    //        item.Print(Vector3C.red);
+    //    }
+    //    foreach (var item in settingsCollision.capsules)
+    //    {
+    //        item.Print(Vector3C.green);
+    //    }
+    //    foreach (var item in settingsCollision.spheres)
+    //    {
+    //        item.Print(Vector3C.blue);
+    //    }
+    //}
 }

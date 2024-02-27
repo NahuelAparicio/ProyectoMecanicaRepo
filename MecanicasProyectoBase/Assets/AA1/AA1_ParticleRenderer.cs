@@ -31,6 +31,6 @@ public class AA1_ParticleRenderer : MonoBehaviour
     }
     private void OnDrawGizmosSelected()
     {
-        system.Debug();
+        //system.Debug();
     }
 }
